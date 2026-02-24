@@ -468,7 +468,7 @@
             }
         }
     </style>
-	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e25555'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E" type="image/svg+xml">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e25555'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E" type="image/svg+xml">
 </head>
 <body>
     <!-- ПЕРВЫЙ ЭКРАН -->
@@ -558,7 +558,7 @@
                 <div class="color-circle" style="background: #ecd9c6;"></div>
             </div>
 
-            <!-- ФОРМА -->
+            <!-- ФОРМА (без вопроса о подарке) -->
             <div class="rsvp-form">
                 <form id="weddingForm">
                     <div class="form-group">
@@ -629,16 +629,6 @@
                         <textarea id="message" name="message" rows="3" placeholder="Ваши пожелания..."></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="gift">Предпочтения по подарку</label>
-                        <select id="gift" name="gift">
-                            <option value="">— Выберите вариант —</option>
-                            <option value="Денежный подарок">Денежный подарок</option>
-                            <option value="Вино">Вино</option>
-                            <option value="Другое (напишу в комментарии)">Другое (напишу в комментарии)</option>
-                        </select>
-                    </div>
-
                     <button type="submit" class="submit-btn">Отправить</button>
                     <div class="success-message" id="successMessage">✅ Спасибо! Ваш ответ получен.</div>
                     <div class="error-message" id="errorMessage">❌ Ошибка отправки. Попробуйте ещё раз или напишите нам в Telegram.</div>
@@ -700,7 +690,7 @@
             });
         });
 
-        // Отправка формы
+        // Отправка формы (без поля gift)
         document.getElementById('weddingForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
@@ -722,7 +712,7 @@
             const alcohol = Array.from(alcoholCheckboxes).map(cb => cb.value).join(', ') || 'не указано';
             const child = document.querySelector('input[name="child"]:checked')?.value || 'не указано';
             const message = document.getElementById('message').value.trim() || '—';
-            const gift = document.getElementById('gift').value || 'не выбран';
+            // gift удалён
 
             if (!name || !attendance) {
                 alert('Пожалуйста, заполните обязательные поля.');
@@ -741,7 +731,6 @@
 🥂 Алкоголь: ${alcohol}
 👶 Ребёнок: ${child}
 💬 Сообщение: ${message}
-🎁 Подарок: ${gift}
             `.trim();
 
             try {
@@ -767,9 +756,4 @@
         });
     </script>
 </body>
-
 </html>
-
-
-
-
